@@ -1,0 +1,120 @@
+from os import system, name
+from time import sleep
+lista_clients= []
+exercicios=[]
+peso_numa_certa_alt=[]
+peso_ini=[]
+def clear():
+ 
+    #windows
+    if name == 'nt':
+        _ = system('cls')
+ 
+    # para mac e linux
+    else:
+        _ = system('clear')
+
+
+def pesquisar(id):
+    for id in  range(len(lista_clients)):
+        print(id)
+   
+
+def registar():
+    sair = False    
+    while not sair: 
+        print("Menu")
+        print("C - Clientes")
+        print("E - Exercício")
+        print("P - Peso numa certa altura")
+        print("V - Voltar ao inicio")
+        opcao = input("Opcção desejada:  ")
+        if opcao == "C"or opcao=="c":
+           
+            flag=True
+            while flag:
+                clients=[]
+                id = input("introduza um id: ")
+                nome = input("Introduza o seu  nome: ")
+                idade = int(input("Introduza  sua idade: "))
+                email = input("Introduza o seu email: ")
+                peso = float(input("Qual o seu peso: "))
+                clients.extend(["ID: ",id, "Nome: ",nome, "Idade: ",idade, "Email:",email ,"Peso: ",peso  ]               )
+                print(clients) 
+                lista_clients.append(clients)
+                peso_ini.append(peso)
+                print("O seu registo foi concluido com sucesso!")
+                sleep(3)
+                clear()
+                break
+                    
+        elif opcao == "E"or opcao=="e":
+            flag=True
+            while flag:
+                exerc2=[]
+                
+                nome_exerc = input("Introduza o exercício realizado: ")
+                data_de_exerc = input("Introduza a data do exercício realizado: ")
+                exerc2.extend(["Exercício: ",nome_exerc, "Data de exercício: ",data_de_exerc ]               )
+                print(exerc2) 
+                exercicios.append(exerc2)
+                print("O seu registo foi concluido com sucesso!")
+                sleep(3)
+                clear()
+                break
+
+        elif opcao == "P"or opcao=="p":        
+            flag=True
+            while flag:
+                peso_numa_certa_alt2=[]
+                
+                data_nova = input("Introduza a data de hoje: ")
+                peso_novo= float(input("Novo peso: "))
+                peso_numa_certa_alt2.extend(["Data atual: ",data_nova, "Peso novo:  ",peso_novo ]               )
+                print(peso_numa_certa_alt2) 
+                peso_numa_certa_alt.append(peso_numa_certa_alt2)
+                print("O seu registo foi concluido com sucesso!")
+                sleep(3)
+                clear()
+                break
+            
+        elif opcao == "V" or opcao == "v":
+            sleep(3)
+            clear()
+            break
+        else:
+            print("Opcção inexistente, por favor introduza novamente!!")
+            sleep(3)
+            clear()
+
+
+def menu():
+    sair = False
+    while not sair: 
+        print("Menu")
+        print("R - Registar")
+        print("P - Pesquisar")
+        print("S - Sair")
+        opcao = input("Opcção desejada:  ")
+        if opcao == "R"or opcao=="r":
+            sleep(2)
+            clear()
+            registar()
+        elif opcao == "P"or opcao=="p":
+            id = input('Id: ')
+            element = pesquisar(id)
+            if element in lista_clients:
+                print(f'ID {id}: {element}')
+            else:
+                print(f'ID {id} não encontrado!')
+
+ 
+        elif opcao == "S" or opcao=="s":
+            sair=True
+            pass               
+        else:
+            print("Opcção inexistente, por favor introduza novamente!!")
+            sleep(2)
+            clear()
+
+menu()
